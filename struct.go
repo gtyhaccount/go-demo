@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 /*
-struct:结构
+struct:结构,也是一种值类型，对它进行传递的时候，也是进行了值得拷贝.
 -Go中没有class，结构就是为了实现部分class的功能
 -type <Name> struct{} // 遵循可见性原则
 -支持指向自身的指针类型成员
@@ -16,59 +16,59 @@ struct:结构
 -支持匿名字段，本质上是定义了以某个类型名为名称的字段
 -嵌入结构作为匿名字段看起来像继承，但不是继承
 -可以使用匿名字段指针
- */
+*/
 
 type person struct {
 	Name string
-	age int
+	age  int
 }
 
 type person2 struct { // 结构中嵌套匿名结构
 	name string
-	age int
-	con struct { // con这个person的参数，其类型是一个匿名的结构
-		phone,address string
-	    }
+	age  int
+	con  struct { // con这个person的参数，其类型是一个匿名的结构
+		phone, address string
+	}
 }
 
 type person3 struct {
-	per person// 结构中嵌套另一个结构；注意：Go没有继承，这叫组合！
+	per person // 结构中嵌套另一个结构；注意：Go没有继承，这叫组合！
 	// person   // 如果没有指定变量的名字，那么系统默认识别为person person,即参数名和类型名一致
 	sex int
 }
 
-func main(){
+func main() {
 	p := person{
-		Name:"Lee", // 可以使用字面值设置属性；注意最后有一个逗号
+		Name: "Lee", // 可以使用字面值设置属性；注意最后有一个逗号
 	}
-	p.age=11 // 可以使用“.”操作设置属性
+	p.age = 11 // 可以使用“.”操作设置属性
 	fmt.Println(p)
 
-	A(p) // * 通过1和2处值的比较，知道这里传递进去的是一个值拷贝 *
+	Ao(p)          // * 通过1和2处值的比较，知道这里传递进去的是一个值拷贝 *
 	fmt.Println(p) // 1.{Lee 11}
 
 	Aoo(&p) // 传入地址值,操作其中的对象属性
 	fmt.Println(p)
 
 	p2 := &person{ // 注意：这里直接取结构person的地址赋值给p2，p2是一个指针
-		Name:"byron",
-		age:23,
+		Name: "byron",
+		age:  23,
 	}
 	p2.age = 24 // 注意：这里不必使用*号取p2的地址，然后通过地址给其中对象赋值
-	            //      * Go中可直接用p2.age这样操作结构中的参数 *
+	//      * Go中可直接用p2.age这样操作结构中的参数 *
 
 	// 匿名结构
-	s := struct{ // 声明结构
+	s := struct { // 声明结构
 		name string
-		age int
-	}{// 结构初始化
-		name:"joe",
-		age:16,
+		age  int
+	}{ // 结构初始化
+		name: "joe",
+		age:  16,
 	}
 	fmt.Println(s)
 
 	// 结构中匿名结构的初始化
-	p3 := person2{name:"joe",age:23}
+	p3 := person2{name: "joe", age: 23}
 	// con这个变量的类型是一个匿名的结构，所以不能在上面的大括号中直接初始化,只能用下方的这种结构初始化
 	p3.con.address = "beijing"
 	p3.con.phone = "12345678901"
@@ -83,14 +83,13 @@ func main(){
 	fmt.Println(p4)
 }
 
-func A(p person){
+func Ao(p person) {
 	p.age = 16
-	fmt.Println("A()",p) // 2.A() {Lee 16}
+	fmt.Println("A()", p) // 2.A() {Lee 16}
 }
 
-func Aoo(p *person){ // 传递一个指针
+func Aoo(p *person) { // 传递一个指针
 	p.age = 16
-	fmt.Println("Aoo() ",p)
+	fmt.Println("Aoo() ", p)
 
 }
-
