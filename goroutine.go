@@ -9,20 +9,8 @@ import (
 /*
 Goroutine:通过通信来共享内存；而不是通过共享内存来通信(比如JAVA)。
 
-Channel:
--Channel是goroutine的沟通桥梁，大多是阻塞同步的（也可以是异步的）。
--通过make创建，close关闭。
--Channel是引用类型。
--可以通过for range来迭代操作channel.
--可以设置单向或双向的通道（channel）。
--可以设置有缓存的通道(channel)，在通道未填满前，会阻塞
-
-Select:
--可处理一个或多个channel的发送或接收
--同时有多个channel时,按随机顺序处理
--可用空的select()来阻塞main函数(因为它在等待channel的输入)
--可设置超时
-
+goroutine是coroutine(协程)在go语言中的实现，是一种"用户态的线程"，由用户在程序中调度。而传统意义上的"线程"是"内核态"的，其对应于操作系统上真正的线程，由系统去调度。
+可以简单的将goroutine机制理解为一种“向队列中不断的插入待执行的任务”，然后真正去执行任务的还是传统意义上的线程，goroutine只是加大了线程的使用效率，避免频繁的创建、释放。
 */
 
 func main() {

@@ -1,0 +1,20 @@
+shorten // 路径：git.marykay.com.cn/community/shorten
+  --main // 包名
+    main.go // 文件名
+    config.go
+  
+  --shorten
+      base.go
+	  shorten.go
+  
+
+1.Go项目中需要的依赖，首先看本地包中是否有；然后看pkg文件中是否有；
+
+2.Go中源文件导入包时，导入路径都是相对于GOPATH的。比如import git.marykay.com.cn/community/shorten/short；
+  就是根据系统的GOPATH定位到%GOPATH%/src/git.marykay.com.cn/community/shorten/short;
+  
+*3.启动一个Go项目。切换到可执行文件的目录，然后命令行输入可执行文件名称；然后添加必要的参数。
+   比如：目录--/d/Go/path/src/git.marykay.com.cn/community/shorten
+       ./shorten.exe bin/shorten.conf
+	                 目录bin下面的shorten.conf中存放了配置文件
+                                                    

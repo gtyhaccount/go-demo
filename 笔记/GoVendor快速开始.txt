@@ -1,0 +1,69 @@
+----------------------------------------------------------------------------------------------------
+安装govendor:
+1.执行go get -u github.com/kardianos/govendor（获取govendor包到本地并编译到Gopath/bin目录中）
+2.将Gopath/bin中存在的govendor.exe添加到环境变量Path中，让系统知道执行govendor命令的时候，调用govendor.exe
+
+-------------------------------------------------------------------------------------------------------------
+对于 govendor 来说，主要存在三种位置的包：
+项目自身的包组织为本地（local）包；
+传统的存放在 $GOPATH 下的依赖包为外部（external）依赖包；
+被 govendor 管理的放在 vendor 目录下的依赖包则为 vendor 包。
+
+具体来看，这些包可能的类型如下：
+
+状态	缩写状态	含义
++local	l	本地包，即项目自身的包组织
++external	e	外部包，即被 $GOPATH 管理，但不在 vendor 目录下
++vendor	v	已被 govendor 管理，即在 vendor 目录下
++std	s	标准库中的包
++unused	u	未使用的包，即包在 vendor 目录下，但项目并没有用到
++missing	m	代码引用了依赖包，但该包并没有找到
++program	p	主程序包，意味着可以编译为执行文件
++outside	 	外部包和缺失的包
++all	 	所有的包
+常见的命令如下，格式为 govendor COMMAND。
+
+通过指定包类型，可以过滤仅对指定包进行操作。
+
+命令	功能
+init	初始化 vendor 目录
+list	列出所有的依赖包
+add	添加包到 vendor 目录，如 govendor add +external 添加所有外部包
+add PKG_PATH	添加指定的依赖包到 vendor 目录
+update	从 $GOPATH 更新依赖包到 vendor 目录
+remove	从 vendor 管理中删除依赖
+status	列出所有缺失、过期和修改过的包
+fetch	添加或更新包到本地 vendor 目录
+sync	本地存在 vendor.json 时候拉去依赖包，匹配所记录的版本
+get	类似 go get 目录，拉取依赖包到 vendor 目录
+
+-------------------------------------------------------------------------------------------------------------
+# Setup your project.
+cd "my project in GOPATH"
+govendor init
+
+# Add existing GOPATH files to vendor.
+govendor add +external
+
+# View your work.
+govendor list
+
+# Look at what is using a package
+govendor list -v fmt
+
+# 指定要获取的特定版本或修订版本
+govendor fetch golang.org/x/net/context@a4bbce9fcae005b22ae5443f6af064d80a6f5a55
+govendor fetch golang.org/x/net/context@v1   # Get latest v1.*.* tag or branch.
+govendor fetch golang.org/x/net/context@=v1  # Get the tag or branch named "v1".
+
+# 将包更新为最新
+govendor fetch golang.org/x/net/context
+
+# 格式化您的存储库
+govendor fmt +local
+
+# 构建您的存储库中的所有内容
+govendor install +local
+
+# 测试您的存储库
+govendor test +local
