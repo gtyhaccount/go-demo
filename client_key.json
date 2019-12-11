@@ -1,0 +1,90 @@
+{
+    "DEV": [
+        {
+            "name": "elearning",
+            "key": "a54111da-1201-4549-b9a0-2724dcd338e6"
+        },
+        {
+            "name": "sa",
+            "key": "1b678eef-ed1b-4e64-a8f8-39fbf1eefc12"
+        },
+        {
+            "name": "vmo",
+            "key": "f085ee3b-7c24-437d-8e8a-ad8f625be658"
+        },
+        {
+            "name": "intouch",
+            "key": "9ffeabc7-831b-44bb-a02e-df15c4f768f5"
+        },
+        {
+            "name": "community",
+            "key": "29f03220-7d8f-4ed3-8dc2-3fb511deb94c"
+        }
+    ],
+    "QA": [
+        {
+            "name": "elearning",
+            "key": "ba6b24a4-d90b-4134-9357-439b921e9807"
+        },
+        {
+            "name": "sa",
+            "key": "286b3a43-1234-4856-bbf9-c8869cc958f8"
+        },
+        {
+            "name": "vmo",
+            "key": "3306d966-8605-4e63-8d8d-139092e6bced"
+        },
+        {
+            "name": "intouch",
+            "key": "7b138354-d91b-4c13-8654-b6f8bb16d54e"
+        },
+        {
+            "name": "community",
+            "key": "2b475046-aff2-4a97-a2f1-d88f2c576fae"
+        }
+    ],
+    "UAT": [
+        {
+            "name": "elearning",
+            "key": "dce5892d-d63c-4a2e-8254-94b3a5c311fa"
+        },
+        {
+            "name": "sa",
+            "key": "d06cb5c4-70f4-4985-a55b-0aa129db4bc1"
+        },
+        {
+            "name": "vmo",
+            "key": "3ad23394-6ee2-44a2-9c93-846c5743913e"
+        },
+        {
+            "name": "intouch",
+            "key": "2b80078d-88fe-478c-829f-1fede0e2032c"
+        },
+        {
+            "name": "community",
+            "key": "58352246-2718-405a-939c-86b2fea1dd25"
+        }
+    ],
+    "PROD": [
+        {
+            "name": "elearning",
+            "key": "5cfbda0d-9e17-415f-b31c-ef39376127e2"
+        },
+        {
+            "name": "sa",
+            "key": "31346b41-eac6-4986-9f20-3b54c79cc4ce"
+        },
+        {
+            "name": "vmo",
+            "key": "12d51633-1bb4-4ce5-9cb0-beffcf44443d"
+        },
+        {
+            "name": "intouch",
+            "key": "80b30b19-3a7e-4872-bc26-4033e976dddb"
+        },
+        {
+            "name": "community",
+            "key": "4b11e4a2-5b3f-469c-b956-8ca3691a6c51"
+        }
+    ]
+}
