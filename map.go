@@ -15,8 +15,8 @@ map:
 -超出容量自动扩容
 -使用delete()删除键值对
 -使用for range对map和slice进行迭代操作
- */
-func main(){
+*/
+func main() {
 	// 1.初始化
 	var m map[int]string
 	//m = map[int]string{1:"a",2:"b",3:"c"}
@@ -36,24 +36,24 @@ func main(){
 	var m3 = make(map[int]string)
 	fmt.Println(m3[1]) // 返回一个空的字符串
 
-	v ,ok := m3[2]// 如果只有一个返回值，那么返回value；
-	              // 如果有两个值，第二个值是boll类型，表示该键值对是否存在
+	v, ok := m3[2] // 如果只有一个返回值，那么返回value；
+	// 如果有两个值，第二个值是boll类型，表示该键值对是否存在
 	fmt.Println(v)
 	if !ok {
 		m3[2] = "123456"
 	}
 	v = m3[2]
-	fmt.Println(v,ok)
+	fmt.Println(v, ok)
 
 	// 4.map的遍历
 	//for i,v:=range slice{} ---如果遍历的是slice,那么返回的第一个值是index；第二个值是value
 	//for k,v:=range map{} ---如果遍历的是map,那么返回的第一个值是key；第二个值是value
-	arr := make([]map[int]string,1)
+	arr := make([]map[int]string, 1)
 	arr[0] = make(map[int]string)
 	arr[0][0] = "123"
 	fmt.Println(arr[0][0])
-	for _,v := range arr{
-		v[0]="789"
+	for _, v := range arr {
+		v[0] = "789"
 		fmt.Println(v[0])
 	}
 	fmt.Println(arr[0][0])

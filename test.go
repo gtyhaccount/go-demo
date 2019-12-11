@@ -1,24 +1,15 @@
 package main
 
 import (
-	"container/list"
 	"fmt"
+	"time"
 )
 
 func main() {
+	format := "010602150405"
 
-	t := new(Topic)
-	t.Name = "lee"
-	t.chs = list.New()
-	t.chs.PushBack("t.u.123456")
+	dateStr := "071930160000"
 
-	for e := t.chs.Front(); e != nil; e = e.Next() {
-		fmt.Println(e)
-	}
-}
-
-type Topic struct {
-	Name string
-
-	chs *list.List
+	t, _ := time.ParseInLocation(format, dateStr, time.Local)
+	fmt.Println(t)
 }

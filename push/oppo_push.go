@@ -1,4 +1,4 @@
-package push
+package main
 
 import (
 	"crypto/sha256"
@@ -49,7 +49,7 @@ func main() {
 	authToken, _ := auth()
 	message := &Message{
 		TargetType:  2,
-		TargetValue: "CN_624c5d3d6a3b4a24851b41b05260f0da",
+		TargetValue: "CN_40d626cfea39adf1236cb0c9980e566f",
 	}
 	message.Notification.AppMessageId = uuid
 	// title max length is 32
@@ -58,12 +58,12 @@ func main() {
 	// sub_title max length is 10
 	//message.Notification.SubTitle = "push test"
 	// content max length is 200
-	message.Notification.Content = "6人处于DIQ考核期" + strconv.FormatInt(timestamp, 10)
+	message.Notification.Content = "mkcintouch:///notify_detail?action=test" + "6人处于DIQ考核期" + strconv.FormatInt(timestamp, 10)
 	//message.Notification.Content = "ClickActionType is 5.Hello World," + uuid
 
 	message.Notification.ClickActionType = 5
 	//message.Notification.ClickActionActivity = ""
-	message.Notification.ClickActionUrl = "mkcintouch:///notify_detail?action=test"
+	message.Notification.ClickActionUrl = "mkcskin://notify_detail?action="
 	//message.Notification.ActionParameters = "{\"key1\":\"value1\",\"key2\":\"value2\"}"
 
 	messageJsonStr, err := json.Marshal(message)

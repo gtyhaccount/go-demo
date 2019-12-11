@@ -12,7 +12,8 @@ import (
 
 2. 解析时，接收体可自行定义。json串中的key自动在接收体中寻找匹配的项进行赋值。匹配规则是：
 	2.1 先查找与key一样的json标签，找到则赋值给该标签对应的变量(如Name)。
-	2.2 没有json标签的，就从上往下依次查找变量名与key一样的变量，如Age。或者变量名忽略大小写后与key一样的变量。如HIgh，Class。第一个匹配的就赋值，后面就算有匹配的也忽略。(前提是该变量必需是可导出的，即首字母大写)。
+	2.2 没有json标签的，就从上往下依次查找变量名与key一样的变量，如Age。或者变量名忽略大小写后与key一样的变量。如HIgh，Class。
+  第一个匹配的就赋值，后面就算有匹配的也忽略。(前提是该变量必需是可导出的，即首字母大写)。
 
 3. 不可导出的变量无法被解析（如sex变量，虽然json串中有key为sex的k-v，解析后其值仍为nil,即空值）
 
@@ -53,6 +54,36 @@ func main() {
 	data := result2.Data.(map[string]interface{}) // 强制转化为map[string]interface{}
 
 	fmt.Println("auth_token is:", data["auth_token"])
+
+	type Result struct {
+		result int    `json:"result"`
+		desc   string `json:"desc"`
+		taskId string `json:"taskId"`
+	}
+
+	str3 := "{\"result\":0,\"desc\":\"请求成功\",\"taskId\":\"569226442568265728\"}"
+
+	var res Result
+	if err := json.Unmarshal([]byte(str3), &res); err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println("taskId:", res.taskId)
+
+	var jsonBlob = []byte(` [ 
+        { "Name" : "Platypus" , "Order" : "Monotremata" } , 
+        { "Name" : "Quoll" ,     "Order" : "Dasyuromorphia" } 
+    ] `)
+	type Animal struct {
+		Name  string
+		Order string
+	}
+	var animals []Animal
+	err := json.Unmarshal(jsonBlob, &animals)
+	if err != nil {
+		fmt.Println("error:", err)
+	}
+	fmt.Printf("%+v", animals)
+
 }
 
 func extractBody(msg string) (title, body string) {
