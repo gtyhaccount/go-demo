@@ -1,0 +1,25 @@
+go mod <command>:
+
+download    download modules to local cache (下载依赖的module到本地cache,有时候有些问题可以通过'go clean -cache'清除缓存解决))
+edit        edit go.mod from tools or scripts (编辑go.mod文件)
+graph       print module requirement graph (打印模块依赖图))
+init        initialize new module in current directory (在当前文件夹下初始化一个新的module, 创建go.mod文件。go mod init 当前modules的名字(比如example.com/test))
+tidy        add missing and remove unused modules (增加丢失的module，去掉未用的module。这是一个提交代码前的好习惯！)
+vendor      make vendored copy of dependencies (将依赖复制到vendor下)
+verify      verify dependencies have expected content (校验依赖)
+why         explain why packages or modules are needed (解释为什么需要依赖)
+--------------------------------------------------------------------------------------------------------------
+go.mod文件中有四种指令：module，require，exclude，replace。
+
+module：模块名称
+require：依赖包列表以及版本
+exclude：禁止依赖包列表（仅在当前模块为主模块时生效）
+replace：替换依赖包列表 （仅在当前模块为主模块时生效）
+{注意：当项目需要依赖一个私有包（比如公司内部的一个项目包）时，无法通过go modules设置的代理服务器去拉取。
+       此时可以用replace将无法在公网上拉取的包地址替换为本机文件系统的地址。如：replace marykay.mobilecore.mdmgokit => D:\go\project\mdm-go-kit
+	   这样，go modules就知道从本地的D盘去拉取依赖了。}
+--------------------------------------------------------------------------------------------------------------
+go list -m all:查看当前modules的依赖关系
+go list -m -versions rsc.io/sampler：查看当前modules可以使用的'rsc.io/sampler'版本
+
+go get golang.org/x/tools:将当前modules中'golang.org/x/tools'的版本升级到最新版本。可以用'golang.org/x/tools@v1.2.0'指定特定的版本。
