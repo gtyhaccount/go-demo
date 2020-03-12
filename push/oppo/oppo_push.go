@@ -3,9 +3,10 @@ package main
 import (
 	"crypto/sha256"
 	"encoding/json"
+	"errors"
 	"fmt"
-	log "github.com/sirupsen/logrus"
 	"github.com/satori/go.uuid"
+	log "github.com/sirupsen/logrus"
 	"io/ioutil"
 	"net/http"
 	"net/url"
@@ -43,7 +44,7 @@ type Message struct {
 
 func main() {
 	timestamp := time.Now().UnixNano() / 1e6
-	uuid := fmt.Sprintf("%s", uuid.Must(uuid.NewV4()))
+	uuid := fmt.Sprintf("%s", uuid.Must(uuid.NewV4(), errors.New("")))
 
 	// 2. 单推
 	authToken, _ := auth()
