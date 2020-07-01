@@ -1,0 +1,16 @@
+syntax = "proto3";
+package message;
+
+// Payload is the message payload saves to db/message table and transmits on wire
+message Payload {
+    int64 id = 1;
+    string topic = 2;
+    int64 offset = 3;
+    int64 timestamp = 4;
+    int32 type = 5;
+    int32 subtype = 6;
+    string body = 7;
+    string extra = 8;
+    string sender_id = 9;
+    int64 expires_at = 10;
+}

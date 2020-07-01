@@ -1,0 +1,22 @@
+// 编译命令: protoc --go_out=plugins=grpc:./ ./helloworld.proto
+
+syntax = "proto3";
+
+// (相对于当前目录)在该目录下生成对应的".pb.go"文件
+option go_package="protocol_buffers/service";
+
+package service;
+
+service Greeter{
+  rpc SayHello(Request) returns (Response) {}
+}
+
+message Request{
+  string name = 1;
+}
+
+message Response{
+  string message = 1;
+}
+
+

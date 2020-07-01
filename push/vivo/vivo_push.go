@@ -5,8 +5,8 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	uuid "github.com/satori/go.uuid"
 	log "github.com/sirupsen/logrus"
-	"github.com/satori/go.uuid"
 	"io/ioutil"
 	"net/http"
 	"strconv"
@@ -95,7 +95,7 @@ func vivoPush(accessToken, regId, title, content string) error {
 	param["skipType"] = 2
 	param["skipContent"] = "mkskin:///notify_detail?action=paramxxx"
 	// 用户请求唯一标识 最大 64 字符
-	param["requestId"], _ = uuid.NewV4()
+	param["requestId"] = uuid.NewV4()
 	paramJson, _ := json.Marshal(param)
 
 	client := &http.Client{}
