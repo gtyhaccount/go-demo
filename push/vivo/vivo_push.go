@@ -16,16 +16,16 @@ import (
 
 func main() {
 	timestamp := time.Now().UnixNano() / 1e6
-	//appId := 11788
-	//appKey := "28fc0f98-e029-4c9b-80b1-456544a4ca87"
-	//appSecret := "09d3cb69-b41b-40b2-91b2-936d1a1c2095"
+	appId := 100018635
+	appKey := "199655c571c5c74d55b9eb892cfce896"
+	appSecret := "d2a207ae-bfd5-48eb-a421-2b912a868ab1"
 
-	// 1. vivo auth
-	//at, _ := vivoAuth(timestamp, appId, appKey, appSecret)
+	//1. vivo auth
+	at, _ := vivoAuth(timestamp, appId, appKey, appSecret)
 	//fmt.Println(at)
 	// 2. device push
-	at := "e3039c1c-8147-4136-87b1-9fb48ff68c04"
-	regId := "15554962178631178811065"
+	//at := "e3039c1c-8147-4136-87b1-9fb48ff68c04"
+	regId := "16105346951451863510657"
 	if err := vivoPush(at, regId, "Hello world:"+strconv.FormatInt(timestamp, 10), "Hello xiao xiang:"+strconv.FormatInt(timestamp, 10)); err != nil {
 		fmt.Errorf("push error:%s", err)
 	}
@@ -93,7 +93,7 @@ func vivoPush(accessToken, regId, title, content string) error {
 	param["content"] = content
 	// 点击跳转类型 1：打开 APP 首页 2：打开链接 3：自定义 4:打开 app 内指定页面
 	param["skipType"] = 2
-	param["skipContent"] = "mkskin:///notify_detail?action=paramxxx"
+	param["skipContent"] = "mkintouch:///notify_detail?action="
 	// 用户请求唯一标识 最大 64 字符
 	param["requestId"] = uuid.NewV4()
 	paramJson, _ := json.Marshal(param)
@@ -127,12 +127,16 @@ func vivoPush(accessToken, regId, title, content string) error {
 	type Result struct {
 		Result int    `json:"result"`
 		Desc   string `json:"desc"`
-		taskId string `json:"taskId"`
+		TaskId string `json:"taskId"`
 	}
 
 	res := &Result{}
 	if err := json.Unmarshal(body, &res); err != nil {
 		return errors.New(fmt.Sprintf("send message,unmarshal error:%s", err))
+	}
+
+	if res.TaskId == "" {
+		return errors.New(fmt.Sprintf("send message error:%s", string(body)))
 	}
 
 	log.WithFields(log.Fields{

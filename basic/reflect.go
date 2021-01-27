@@ -22,10 +22,10 @@ func main() {
 
 	fmt.Println(Struct2Map(lee))
 
-    reflectTypeAlias()
-    reflectFloat()
+	//reflectTypeAlias()
+	reflectFloat()
 
-	setValue()
+	//setValue()
 }
 
 func Struct2Map(input interface{}) map[string]interface{} {
@@ -46,23 +46,23 @@ func Struct2Map(input interface{}) map[string]interface{} {
 }
 
 // 反射类型别名(自定义的类型,好处是可以给这些自定义类型加方法，典型的是string()；类比于java的基本类型和包装类)
-func reflectTypeAlias(){
+func reflectTypeAlias() {
 	fmt.Println("reflect type alias end ……")
 
 	var mi MyInt = 1
 
-	fmt.Println(reflect.TypeOf(mi).Name()) // MyInt
+	fmt.Println(reflect.TypeOf(mi).Name())   // MyInt
 	fmt.Println(reflect.TypeOf(mi).String()) // main.MyInt
 	// 返回参数的底层类型：int (即go的基本类型)
-	fmt.Println(reflect.TypeOf(mi).Kind())// int
-	fmt.Println(reflect.ValueOf(mi).String())// <main.MyInt Value>
-	fmt.Println(reflect.ValueOf(mi).Kind()) // int
-	fmt.Println(reflect.ValueOf(mi).Interface())// 1
+	fmt.Println(reflect.TypeOf(mi).Kind())       // int
+	fmt.Println(reflect.ValueOf(mi).String())    // <main.MyInt Value>
+	fmt.Println(reflect.ValueOf(mi).Kind())      // int
+	fmt.Println(reflect.ValueOf(mi).Interface()) // 1
 
 	fmt.Println("reflect type alias end ……")
 }
 
-func reflectFloat(){
+func reflectFloat() {
 	fmt.Println("reflect float start ……")
 	var x float64 = 3.4
 	fmt.Println("type:", reflect.TypeOf(x))
@@ -82,8 +82,8 @@ func reflectFloat(){
 
 /*
 设置被反射对象的值
- */
-func setValue(){
+*/
+func setValue() {
 	fmt.Println()
 	fmt.Println("set reflected variable value. start ……")
 
@@ -95,7 +95,7 @@ func setValue(){
 	v = reflect.ValueOf(&x) // Note: take the address of x. 第一步
 	fmt.Println("type of v:", v.Type())
 	fmt.Println("settability of v:", v.CanSet())
-	v = v.Elem()// 如果"第一步"里面不是取"&x"而是取"x",那么这里会panic,因为v.kind()即底层类型是float而不是ptr或者interface
+	v = v.Elem() // 如果"第一步"里面不是取"&x"而是取"x",那么这里会panic,因为v.kind()即底层类型是float而不是ptr或者interface
 	fmt.Println("The Elem of v is: ", v)
 	fmt.Println("settability of v:", v.CanSet())
 	v.SetFloat(3.1415) // this works!

@@ -28,7 +28,7 @@ import "fmt"
 	[N]Type{value1, value2, ..., valueN}
 	[...]Type{value1, value2, ..., valueN}
 
-  TODO:数组和切片的区别就是是否指定了大小,以为数组是固定长度的数据类型。
+  TODO:数组和切片的区别就是是否指定了大小,因为数组是固定长度的数据类型。
 */
 
 func main() {

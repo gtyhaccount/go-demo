@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"github.com/google/uuid"
+)
 /*
 其实理解闭包的最方便的方法就是将闭包函数看成一个类，一个闭包函数调用就是实例化一个类。
 然后就可以根据类的角度看出哪些是“全局变量”，哪些是“局部变量”了。
@@ -23,6 +26,11 @@ func main() {
 			neg(-2*i),
 		)
 	}
+
+	fmt.Println(uuid.New())
+	fmt.Println(uuid.New())
+	fmt.Println(uuid.New())
+	fmt.Println(uuid.New())
 }
 
 func adder() func(int) int {

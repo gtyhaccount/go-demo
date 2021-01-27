@@ -3,7 +3,6 @@ package main
 import (
 	"crypto/sha256"
 	"encoding/json"
-	"errors"
 	"fmt"
 	"github.com/satori/go.uuid"
 	log "github.com/sirupsen/logrus"
@@ -44,23 +43,23 @@ type Message struct {
 
 func main() {
 	timestamp := time.Now().UnixNano() / 1e6
-	uuid := fmt.Sprintf("%s", uuid.Must(uuid.NewV4(), errors.New("")))
+	uuidstr := uuid.NewV4().String()
 
 	// 2. 单推
 	authToken, _ := auth()
 	message := &Message{
 		TargetType:  2,
-		TargetValue: "CN_40d626cfea39adf1236cb0c9980e566f",
+		TargetValue: "CN_8bee29f41ac599362b0c2c7246d5cf4d",
 	}
-	message.Notification.AppMessageId = uuid
+	message.Notification.AppMessageId = uuidstr
 	// title max length is 32
 	message.Notification.Title = "Hello 祥哥"
 	//message.Notification.Title = "Hello Oppo" + strconv.FormatInt(timestamp, 10)
 	// sub_title max length is 10
 	//message.Notification.SubTitle = "push test"
 	// content max length is 200
-	message.Notification.Content = "mkcintouch:///notify_detail?action=test" + "6人处于DIQ考核期" + strconv.FormatInt(timestamp, 10)
-	//message.Notification.Content = "ClickActionType is 5.Hello World," + uuid
+	message.Notification.Content = "mkcintouch:///notify_detail?action=" + "6人处于DIQ考核期" + strconv.FormatInt(timestamp, 10)
+	//message.Notification.Content = "ClickActionType is 5.Hello World," + uuidstr
 
 	message.Notification.ClickActionType = 5
 	//message.Notification.ClickActionActivity = ""

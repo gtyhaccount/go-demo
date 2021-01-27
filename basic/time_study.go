@@ -30,7 +30,14 @@ func main() {
 	fmt.Println(currentTime.Year())
 	fmt.Println(currentTime.YearDay())
 
-	tm := time.Unix(1562918830, 600000)
+	tm := time.Unix(currentTime.Unix(), 0)
 	fmt.Println(tm)
+
+	fmt.Println(time.Now().UnixNano())
+	fmt.Println(time.Now().UnixNano() / 1e6)
+
+	var t2 int64
+	t2 = 1593916771778
+	fmt.Println(time.Unix(t2/1e3, 0))
 
 }
