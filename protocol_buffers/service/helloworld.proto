@@ -7,9 +7,22 @@ option go_package="protocol_buffers/service";
 
 package service;
 
+enum PhoneType{
+  //枚举类型第一个字段必须为0
+  HOME = 0;
+  WORK = 1;
+}
+
 service Greeter{
   rpc SayHello(Request) returns (Response) {}
 }
+
+
+message Phone {
+  PhoneType type = 1;
+  string number = 2;
+}
+
 
 message Request{
   string name = 1;

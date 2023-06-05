@@ -32,6 +32,7 @@ type AndroidConfig struct {
 	*/
 	CollapseKey  int                 `json:"collapse_key"`
 	Notification AndroidNotification `json:"notification"`
+	Category     string              `json:"category"`
 }
 
 type AndroidNotification struct {
@@ -56,16 +57,15 @@ type ClickAction struct {
 // message struct -- end
 
 func main() {
-	clientID := "10770940"
-	clientSecret := "dc6282cad191bd743569b1b09bda9fbf"
+	clientID := "100009975"
+	clientSecret := "71233be71e72be8924b1fe89a4d75290"
 
 	// reuse
 	httpClient := &http.Client{}
 
 	authToken, err := auth("client_credentials", clientID, clientSecret, httpClient)
 
-	pushTokenArr := []string{"AC0AzwuR3uFJq_JND3pi96rgwIMLan52Sxj04i_G6qeN1Uqd7Gwl5LNeqfqdEdRmSSg6WYD-Dyx9CupqxaexrC_QMiXMkjiHwW2EebnnKWJpvYMhZjGbgPNmF_ginn4U9A"}
-
+	pushTokenArr := []string{"IQAAAACy0NDSAAAU3cDOvEkDixas7iEzYNEzoZOenBJZ2U3Tbrc-k1Tvcg4WZ_6oO1RYy2-rkUVX_bzQGDQ1k90dMrZIzJRVDxGxaT9Xnif7gZ2svQ"}
 	if err != nil {
 		log.Errorf("request AT error:", err)
 		return
@@ -77,20 +77,21 @@ func main() {
 		Android: AndroidConfig{
 			CollapseKey: -1,
 			Notification: AndroidNotification{
-				Title: "hello xiao xiang!",
-				Body:  "xiao xiang NB!",
+				Title: "hello huawei test!",
+				Body:  "hello huawei test!",
 				ClickAction: ClickAction{
 					Type:   1,
 					Intent: "mkcskin://com.mk/notify_detail?action=1",
 					//Url:  "https://www.baidu.com",
 				},
 			},
+			Category: "WORK",
 		},
 	}
 
 	params := map[string]interface{}{}
 	params["message"] = message
-	params["validate_only"] = false //控制当前是否为测试消息，测试消息只做格式合法性校验，不会推送给用户设备, true：测试消息 false：正式消息
+	params["validate_only"] = true //控制当前是否为测试消息，测试消息只做格式合法性校验，不会推送给用户设备, true：测试消息 false：正式消息
 
 	paramStr, err := json.Marshal(params)
 	if err != nil {

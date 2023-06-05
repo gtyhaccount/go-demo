@@ -27,6 +27,14 @@ message Person{
   repeated Phone phones =3;
 }
 
+message Teacher{
+  int64 id=1;
+  string name =2;
+  repeated Person person=3;
+
+}
+
+
 message ContactBook{
   repeated Person persons=1;
 }

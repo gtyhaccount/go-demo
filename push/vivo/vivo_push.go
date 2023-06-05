@@ -16,18 +16,18 @@ import (
 
 func main() {
 	timestamp := time.Now().UnixNano() / 1e6
-	appId := 100018635
-	appKey := "199655c571c5c74d55b9eb892cfce896"
-	appSecret := "d2a207ae-bfd5-48eb-a421-2b912a868ab1"
+	appId := 105508202
+	appKey := "0ebac19292ffb3aef9b09fe1ad148b01"
+	appSecret := "2c3c9a2f-ad48-4326-819a-6d923a3ec9b1"
 
 	//1. vivo auth
 	at, _ := vivoAuth(timestamp, appId, appKey, appSecret)
 	//fmt.Println(at)
 	// 2. device push
 	//at := "e3039c1c-8147-4136-87b1-9fb48ff68c04"
-	regId := "16105346951451863510657"
+	regId := "16309211351190820299844"
 	if err := vivoPush(at, regId, "Hello world:"+strconv.FormatInt(timestamp, 10), "Hello xiao xiang:"+strconv.FormatInt(timestamp, 10)); err != nil {
-		fmt.Errorf("push error:%s", err)
+		fmt.Printf(fmt.Errorf("push error:%s", err).Error())
 	}
 
 }
@@ -96,6 +96,9 @@ func vivoPush(accessToken, regId, title, content string) error {
 	param["skipContent"] = "mkintouch:///notify_detail?action="
 	// 用户请求唯一标识 最大 64 字符
 	param["requestId"] = uuid.NewV4()
+	param["pushMode"] = 0
+	param["category"] = "TODO"
+
 	paramJson, _ := json.Marshal(param)
 
 	client := &http.Client{}
