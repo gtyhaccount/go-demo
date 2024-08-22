@@ -20,8 +20,9 @@ require (
 	github.com/golang/protobuf v1.5.2
 	github.com/google/uuid v1.1.4
 	github.com/jinzhu/gorm v1.9.16
+	github.com/jinzhu/now v1.1.5 // indirect
 	github.com/kennygrant/sanitize v1.2.4 // indirect
-	github.com/kr/pretty v0.1.0 // indirect
+	github.com/rabbitmq/amqp091-go v1.10.0
 	github.com/robfig/cron/v3 v3.0.1
 	github.com/saintfish/chardet v0.0.0-20120816061221-3af4cd4741ca // indirect
 	github.com/satori/go.uuid v1.2.0
@@ -34,6 +35,4 @@ require (
 	google.golang.org/grpc v1.29.1
 	google.golang.org/protobuf v1.28.1
 	gopkg.in/check.v1 v1.0.0-20190902080502-41f04d3bba15 // indirect
-	gorm.io/driver/mysql v1.5.0 // indirect
-	gorm.io/gorm v1.25.0
 )
